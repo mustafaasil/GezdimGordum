@@ -1,0 +1,30 @@
+﻿
+@model HomeViewModel
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<h1>Gezdim Gördüm</h1>
+
+<form method="post" class="mb-3">
+    <div class="d-flex align-items-baseline">
+        <input asp-for="Ad" type="text" class="form-control me-2" placeholder="Gezmek İstediğniz Yer" />
+        <span asp-validation-for="Ad" class="text-danger me-2"></span>
+        <button class="btn btn-primary">Ekle</button>
+    </div>
+</form>
+
+<form asp-controller="Home" asp-action="GezmeDurumunuGuncelle">
+    @foreach (var yer in Model.Yerler)
+    {
+        <div class="mb-2 border p-2 rounded bg-light">
+            <label>
+                @Html.CheckBox("GezdigiYerler", yer.Gidildi, new { value = yer.Id })
+                @*<input type="checkbox" name="GezdigiYerler" value="@yer.Id" />*@
+                <span>@yer.Ad</span>
+            </label>
+        </div>
+    }
+    <button class="btn btn-primary">Değişiklikleri Kaydet</button>
+</form>

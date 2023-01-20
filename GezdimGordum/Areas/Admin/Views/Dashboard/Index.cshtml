@@ -1,0 +1,27 @@
+﻿
+@model List<GezdimGordum.Areas.Admin.Models.KullaniciGezmeGorme> 
+
+@{ 
+    Layout = "_Layout";
+    ViewData["Title"] = "Dashboard";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Kullanıcı Adı</th>
+            <th>Gezmek İstediği Yerler</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var bilgi in Model)
+        {
+            <tr>
+                <td>@bilgi.KullaniciAdi</td>
+                <td>@string.Join(", ", bilgi.YerAdlari)</td>
+            </tr>
+        }
+    </tbody>
+</table>
